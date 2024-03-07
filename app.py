@@ -27,7 +27,7 @@ def main():
     threshold = os.environ.get('PRICE_THRESHOLD')
     while True:
         price = get_gas_price()
-        if price > threshold:
+        if price < threshold:
             send_email(price)
 
 if __name__ == '__main__':
