@@ -1,0 +1,2 @@
+request==2.31.0
+resend==0.8.0
