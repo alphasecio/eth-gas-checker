@@ -1,4 +1,4 @@
-import os, json, requests, time
+import os, json, requests
 from resend import Resend
 
 def get_gas_price():
@@ -29,7 +29,6 @@ def main():
         price = get_gas_price()
         if price > threshold:
             send_email(price)
-        time.sleep(3600)  # Check every hour
 
 if __name__ == '__main__':
     main()
