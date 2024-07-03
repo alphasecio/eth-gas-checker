@@ -1,5 +1,5 @@
+import resend
 import os, json, requests
-from resend import Resend
 
 def get_gas_price():
     url = 'https://api.etherscan.io/api'
@@ -15,13 +15,13 @@ def get_gas_price():
     return gas_price
 
 def send_email(price):
-    client = Resend(api_key=os.environ.get("RESEND_API_KEY"))
-    client.send_email(
-        to=os.environ.get("EMAIL_TO"), 
-        sender=os.environ.get("EMAIL_FROM"), 
-        subject=f"Ethereum Gas Price: {price} gwei", 
-        text=f"The current Ethereum gas price is {price} gwei."
-        )
+    resend.api_key = os.environ.get("RESEND_API_KEY")
+    email = resend.Emails.send({
+        "from": os.environ.get("EMAIL_FROM"),
+        "to": [os.environ.get("EMAIL_TO")],
+        "subject": f"Ethereum Gas Price: {price} gwei",
+        "html": f"The current Ethereum gas price is {price} gwei."
+    })
 
 def main():
     threshold = os.environ.get('PRICE_THRESHOLD')
