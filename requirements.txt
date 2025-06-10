@@ -1,2 +1,2 @@
-requests==2.32.3
+requests==2.32.4
 resend==2.10.0
